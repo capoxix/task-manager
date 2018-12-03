@@ -1,4 +1,4 @@
-package com.luv2code.springdemo.dao;
+package com.gcheng.task.dao;
 
 import java.util.List;
 
@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.luv2code.springdemo.entity.Customer;
+import com.gcheng.task.entity.Task;
 
 @Repository
-public class CustomerDAOImpl implements CustomerDAO {
+public class TaskDAOImpl implements TaskDAO {
 
 	//need to inject the session factory
 	@Autowired
@@ -20,59 +20,59 @@ public class CustomerDAOImpl implements CustomerDAO {
 	
 	
 	@Override
-	public List<Customer> getCustomers() {
+	public List<Task> getTasks() {
 		
 		//get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 		
 		//create a query ... sort by last name
-		Query<Customer> theQuery = 
-				currentSession.createQuery("from Customer order by lastName", 
-											Customer.class);
+		Query<Task> theQuery = 
+				currentSession.createQuery("from Task", 
+											Task.class);
 		
 		
 		//execute query and get result list
-		List<Customer> customers = theQuery.getResultList();
+		List<Task> tasks = theQuery.getResultList();
 		
 		//return the results
-		return customers;
+		return tasks;
 	}
 
 
 	@Override
-	public void saveCustomer(Customer theCustomer) {
+	public void saveTask(Task theTask) {
 		// get current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		// save the customer
-		currentSession.saveOrUpdate(theCustomer);
+		// save the task
+		currentSession.saveOrUpdate(theTask);
 		
 	}
 
 
 	@Override
-	public Customer getCustomer(int theId) {
+	public Task getTask(int theId) {
 		
 		// get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 		
 		// now retrieve/read from database using the primary key
-		Customer theCustomer = currentSession.get(Customer.class, theId);
+		Task theTask = currentSession.get(Task.class, theId);
 		
-		return theCustomer;
+		return theTask;
 	}
 
 
 	@Override
-	public void deleteCustomer(int theId) {
+	public void deleteTask(int theId) {
 		
 		// get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 		
 		//delete object with primary key
 		Query theQuery =
-				currentSession.createQuery("delete from Customer where id=:customerId");
-		theQuery.setParameter("customerId", theId);
+				currentSession.createQuery("delete from Task where id=:taskId");
+		theQuery.setParameter("taskId", theId);
 		
 		theQuery.executeUpdate();
 		

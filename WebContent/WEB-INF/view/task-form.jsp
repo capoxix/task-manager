@@ -1,10 +1,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+
 <!DOCTYPE html>
 <html>
 
 <head>
-	<title> Save Customer</title>
+	<title> Save Task</title>
 	
 	<link type="text/css"
 		rel="stylesheet"
@@ -21,14 +22,14 @@
 
 	<div id="wrapper">
 		<div id="header">
-			<h2>CRM - Customer Relationship Manager</h2>
+			<h2>Task Manager</h2>
 		</div>
 	</div>
 	
 	<div id="container">
 		<h3>Save Customer</h3>
 		
-		<form:form action="saveCustomer" modelAttribute="customer" method="POST">
+		<form:form action="saveTask" modelAttribute="task" method="POST">
 		
 		<!-- need to associate this data with customer id -->
 		<form:hidden path="id"/>
@@ -36,19 +37,14 @@
 			<table>
 				<tbody>
 					<tr>
-						<td><label> First name:</label></td>
-						<td><form:input path="firstName" /></td>
+						<td><label> Task name:</label></td>
+						<td><form:input path="name" /></td>
 					</tr>
 					
 					<tr>
-						<td><label> Last name:</label></td>
-						<td><form:input path="lastName" /></td>
+						<td><label> Priority level:</label></td>
+						<td><form:input path="priority" /></td>
 					</tr>
-					
-					<tr>
-						<td><label> Email:</label></td>
-						<td><form:input path="email" /></td>
-					</tr>	
 						
 					<tr>
 						<td><label></label></td>
@@ -61,7 +57,7 @@
 		<div style="clear; both;"></div>
 		
 		<p>
-			<a href="${pageContext.request.contextPath}/customer/list">Back to List</a>
+			<a href="${pageContext.request.contextPath}/task/list">Back to List</a>
 		</p>
 	</div>
 </body>

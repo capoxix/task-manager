@@ -18,15 +18,15 @@
 
 	<div id="wrapper">
 		<div id="header">
-			<h2>CRM - Customer Relationship Manager</h2>
+			<h2>Task Manager</h2>
 		</div>
 	</div>
 
 	<div id="container">
 		<div id="content">
 		
-		<!-- put new button: Add Customer -->
-		<input type="button" value="Add Customer"
+		<!-- put new button: Add Task -->
+		<input type="button" value="Add Task"
 			onclick="window.location.href='showFormForAdd'; return false;"
 			class="add-button"
 			/>
@@ -35,33 +35,31 @@
 		
 			<table>
 				<tr>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Email</th>
+					<th>Task Name</th>
+					<th>Priority Level</th>
 					<th>Action</th>
 				</tr>
 				
 				<!--  loop over and print our customers -->
-				<c:forEach var="tempCustomer" items="${customers}">
-					<!-- construct an "update" link with customer id -->
-					<c:url var="updateLink" value="/customer/showFormForUpdate">
-						<c:param name="customerId" value="${tempCustomer.id}" />
+				<c:forEach var="tempTask" items="${tasks}">
+					<!-- construct an "update" link with task id -->
+					<c:url var="updateLink" value="/task/showFormForUpdate">
+						<c:param name="taskId" value="${tempTask.id}" />
 					</c:url>
 					
-					<!-- construct an "delete" link with customer id -->					
-					<c:url var="deleteLink" value="/customer/delete">
-						<c:param name="customerId" value="${tempCustomer.id}" />
+					<!-- construct an "delete" link with task id -->					
+					<c:url var="deleteLink" value="/task/delete">
+						<c:param name="taskId" value="${tempTask.id}" />
 					</c:url>
 					<tr>
-						<td> ${tempCustomer.firstName}</td>
-						<td> ${tempCustomer.lastName}</td>					
-						<td> ${tempCustomer.email}</td>
+						<td> ${tempTask.name}</td>
+						<td> ${tempTask.priority}</td>					
 						<td>
 							<!-- display the update link -->
 							<a href="${updateLink}">Update</a>
 							|
 							<a href="${deleteLink}"
-								onclick="if(!(confirm('Are you sure you want to delete this customer?'))) return false">Delete</a>
+								onclick="if(!(confirm('Are you sure you want to delete this task?'))) return false">Delete</a>
 						</td>
 						
 					</tr>
